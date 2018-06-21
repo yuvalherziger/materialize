@@ -374,7 +374,7 @@
 
     _buildMinutesView() {
       let $tick = $('<div class="timepicker-tick"></div>');
-      const intervalMinutes = this.options.quarterHourJumps ? 15 : 5;
+      let intervalMinutes = this.options.quarterHourJumps ? 15 : 5;
       // Minutes view
       for (let i = 0; i < 60; i += intervalMinutes) {
         let tick = $tick.clone();
