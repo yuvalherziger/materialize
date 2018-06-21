@@ -22,6 +22,7 @@
     autoClose: false, // auto close when minute is selected
     twelveHour: true, // change to 12 hour AM/PM clock from 24 hour
     vibrate: true, // vibrate the device when dragging clock hand
+    quarterHourJumps: false, // show quarter-hour marks instead of 5-minute marks
 
     // Callbacks
     onOpenStart: null,
@@ -340,7 +341,7 @@
       if (this.options.twelveHour) {
         for (let i = 1; i < 13; i += 1) {
           let tick = $tick.clone();
-          let radian = i / 6 * Math.PI;
+          let radian = (i / 6) * Math.PI;
           let radius = this.options.outerRadius;
           tick.css({
             left:
@@ -355,7 +356,7 @@
       } else {
         for (let i = 0; i < 24; i += 1) {
           let tick = $tick.clone();
-          let radian = i / 6 * Math.PI;
+          let radian = (i / 6) * Math.PI;
           let inner = i > 0 && i < 13;
           let radius = inner ? this.options.innerRadius : this.options.outerRadius;
           tick.css({
@@ -373,10 +374,11 @@
 
     _buildMinutesView() {
       let $tick = $('<div class="timepicker-tick"></div>');
+      const intervalMinutes = this.options.quarterHourJumps ? 15 : 5;
       // Minutes view
-      for (let i = 0; i < 60; i += 5) {
+      for (let i = 0; i < 60; i += intervalMinutes) {
         let tick = $tick.clone();
-        let radian = i / 30 * Math.PI;
+        let radian = (i / 30) * Math.PI;
         tick.css({
           left:
             this.options.dialRadius +
