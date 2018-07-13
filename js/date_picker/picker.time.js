@@ -206,7 +206,8 @@
 		}
 
 		// Minutes view
-		for (i = 0; i < 60; i += 5) {
+    var tickIntervalMinutes = this.options.quarterHourJumps ? 15 : 5;
+		for (i = 0; i < 60; i += tickIntervalMinutes) {
 			tick = tickTpl.clone();
 			radian = i / 30 * Math.PI;
 			tick.css({
@@ -346,7 +347,8 @@
 		ampmclickable: true,  // set am/pm button on itself
 		darktheme: false,			 // set to dark theme
 		twelvehour: true,      // change to 12 hour AM/PM clock from 24 hour
-		vibrate: true          // vibrate the device when dragging clock hand
+		vibrate: true,          // vibrate the device when dragging clock hand
+    quarterHourJumps: false // show quarter-hour marks instead of 5-minute marks
 	};
 
 	// Show or hide popover
